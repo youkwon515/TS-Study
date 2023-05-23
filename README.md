@@ -10,4 +10,4 @@
 **type** 은 `|` 와 `&`로 다른  **type**과 섞어서 사용이 가능하다. <br>
 
 **interface**는 무조건 `interface MyIntetface {}` 형식으로 선언해야 한다. <br>
-**interface**는 `extents`를 사용하여 다른 **interface**와 섞어서 사용이 가능하다. <br>
+**interface**는 `extents`를 사용하여 다른 **type**을 상속 받아 사용이 가능하다. <br>
