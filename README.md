@@ -2,7 +2,7 @@
 
 > 프로젝트 생성 : `npx create-react-app . --template typescript` <br>
 > react styled component : `npm install styled-components@5.3.5` <br>
-> uuid : `npm install uuid`
+> uuid : `npm install --dev @types/uuid`
 
 ## type 과 interface의 차이
 **type**은 `type MyColor = string` 과 `type MyColor = {color: string}` 이렇게
