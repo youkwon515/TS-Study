@@ -14,6 +14,12 @@ function App() {
         setTodoName(value);
     }
 
+    const handleKeyPress = (event: React.KeyboardEvent<HTMLInputElement>) => {
+        if (event.key === "Enter") {
+            addTodo();
+        }
+      };
+
     const handleSearchValue = ({target: {value}}: ChangeEvent<HTMLInputElement>) => {
         setSearchValue(value)
     } 
@@ -36,7 +42,7 @@ function App() {
 
     return (
         <>
-            <Input value={todoName} onChange={handleTodoName} />
+            <Input value={todoName} onChange={handleTodoName} onKeyUp={handleKeyPress}/>
             <button onClick={addTodo}>Todo 추가</button>
             <Input onChange={handleSearchValue}/>
             {todoName}
