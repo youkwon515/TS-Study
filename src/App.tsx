@@ -9,6 +9,9 @@ function App() {
     const [todos, setTodos] = useState<Todo[]>([]);
     const [searchValue, setSearchValue] = useState<string>('');
     const [selectedTodoIds, setSelectedTodoIds] = useState<Todo['id'][]>([]);
+    const [editedTodoId, seteditedTodoId] = useState<Todo["id"] | undefined>();
+    const [editedName, setEditedName] = useState<Todo["name"]>('');
+
 
     const handleTodoName = ({target: {value}}: ChangeEvent<HTMLInputElement>) => {
         setTodoName(value);
@@ -24,6 +27,13 @@ function App() {
         setSearchValue(value)
     } 
 
+    const handleEditedName = ((name: Todo["name"]) => {
+        setEditedName(name);
+    })
+
+    const toggleEditTodo = (id: Todo["id"]) => {
+        seteditedTodoId(prevState => (prevState === id ? undefined : id));
+    }
 
     const handleDeleteTodo = (id:Todo['id']) => {
         setTodos(prevState => {
@@ -36,6 +46,9 @@ function App() {
         setTodos((prevState) => [...prevState, {id: uuidv4(), name: todoName}]);
     }
 
+    const editTodo = () => {
+    }
+
     useEffect(() => {
         setTodoName('');
     },[todos])
@@ -46,7 +59,7 @@ function App() {
             <button onClick={addTodo}>Todo 추가</button>
             <Input onChange={handleSearchValue}/>
             {todoName}
-            <TodoList todos={todos} searchValue={searchValue} deleteTodo={handleDeleteTodo} setSelectedTodoIds={setSelectedTodoIds}/>
+            <TodoList todos={todos} searchValue={searchValue} deleteTodo={handleDeleteTodo} setSelectedTodoIds={setSelectedTodoIds} toggleEditTodo={toggleEditTodo} editedTodoId={editedTodoId} setEditedName={handleEditedName} editTodo={editTodo}/>
         </>
         
     );
