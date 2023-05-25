@@ -4,13 +4,17 @@ import Todo from '../Todo';
 interface TodoListProps {
     todos: TodoType[];
     searchValue:string;
+    editedTodoId: TodoType["id"] | undefined;
     deleteTodo: (id:TodoType['id']) => void;
     // () => 그냥 함수 / 따로 작성한 함수    
     // DispatchSetStateAction = useState의 두번째 인자로 받은 함수
     setSelectedTodoIds: DispatchSetStateAction<TodoType['id'][]>;
+    toggleEditTodo: (id: TodoType["id"]) => void;
+    setEditedName: (name: TodoType["name"]) => void;
+    editTodo: () => void;
 }
 
-function TodoList({todos, searchValue, deleteTodo, setSelectedTodoIds}:TodoListProps) {
+function TodoList({todos, searchValue, deleteTodo, setSelectedTodoIds, toggleEditTodo, editedTodoId, setEditedName, editTodo}:TodoListProps) {
     return (
         <ul>
             {todos.
@@ -30,17 +34,27 @@ function TodoList({todos, searchValue, deleteTodo, setSelectedTodoIds}:TodoListP
                     }
                 };
 
+                const handleEditTodo = () => {
+                    toggleEditTodo(id);
+                }
+
+                const isEdit = editedTodoId === id;
+
                 return (
                     <Todo 
                         key={id} 
                         name={name}
                         deleteTodo={handleDeleteTodo} 
                         handleSelected={handleSelected}
+                        toggleEditTodo={handleEditTodo}
+                        isEdited={isEdit}
+                        setEditedName={setEditedName}
+                        editTodo={editTodo}
                     />
                 );
             })}
         </ul>
-    )
+    );
 }
 
-export default TodoList
+export default TodoList;
