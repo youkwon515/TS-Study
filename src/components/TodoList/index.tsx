@@ -13,7 +13,9 @@ interface TodoListProps {
 function TodoList({todos, searchValue, deleteTodo, setSelectedTodoIds}:TodoListProps) {
     return (
         <ul>
-            {todos.map(({id, name}) => {
+            {todos.
+            filter(({name}) => name.includes(searchValue))
+            .map(({id, name}) => {
                 const handleDeleteTodo = () => {
                     deleteTodo(id);
                 };
