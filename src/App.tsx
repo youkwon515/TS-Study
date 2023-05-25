@@ -47,6 +47,16 @@ function App() {
     }
 
     const editTodo = () => {
+        setTodos((prevState) => {
+            return prevState.map(({id, name}) => {
+                if (id === editedTodoId) {
+                    return {id, name: editedName};
+                }
+                return {id, name};
+            })
+        });
+        seteditedTodoId(undefined);
+        setEditedName('');
     }
 
     useEffect(() => {
