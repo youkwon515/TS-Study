@@ -4,6 +4,7 @@ import {ChangeEvent, useEffect, useState} from 'react';
 import Input from "./components/Input";
 import TodoList from "./components/TodoList";
 import {v4 as uuidv4} from 'uuid';
+import * as S from './styled';
 function App() {
     const [todoName, setTodoName] = useState<Todo['name']>("");
     const [todos, setTodos] = useState<Todo[]>([]);
@@ -65,10 +66,12 @@ function App() {
 
     return (
         <>
-            <Input value={todoName} onChange={handleTodoName} onKeyUp={handleKeyPress}/>
-            <button onClick={addTodo}>Todo 추가</button>
-            <Input onChange={handleSearchValue}/>
-            {todoName}
+            <S.InputContainer>
+                <Input value={todoName} onChange={handleTodoName} onKeyUp={handleKeyPress} placeholder="추가"/>
+                <Input onChange={handleSearchValue} placeholder="검색"/>
+                <button onClick={addTodo}>Todo 추가</button>
+            </S.InputContainer>
+            
             <TodoList todos={todos} searchValue={searchValue} deleteTodo={handleDeleteTodo} setSelectedTodoIds={setSelectedTodoIds} toggleEditTodo={toggleEditTodo} editedTodoId={editedTodoId} setEditedName={handleEditedName} editTodo={editTodo}/>
         </>
         
