@@ -1,6 +1,7 @@
 import type { DispatchSetStateAction } from '../../types/util';
 import type { Todo as TodoType } from '../../types/todo'
 import Todo from '../Todo';
+import * as S from './styled';
 interface TodoListProps {
     todos: TodoType[];
     searchValue:string;
@@ -41,16 +42,18 @@ function TodoList({todos, searchValue, deleteTodo, setSelectedTodoIds, toggleEdi
                 const isEdit = editedTodoId === id;
 
                 return (
-                    <Todo 
-                        key={id} 
-                        name={name}
-                        deleteTodo={handleDeleteTodo} 
-                        handleSelected={handleSelected}
-                        toggleEditTodo={handleEditTodo}
-                        isEdited={isEdit}
-                        setEditedName={setEditedName}
-                        editTodo={editTodo}
-                    />
+                    <S.TodoContainer>
+                        <Todo 
+                            key={id} 
+                            name={name}
+                            deleteTodo={handleDeleteTodo} 
+                            handleSelected={handleSelected}
+                            toggleEditTodo={handleEditTodo}
+                            isEdited={isEdit}
+                            setEditedName={setEditedName}
+                            editTodo={editTodo}
+                        />
+                    </S.TodoContainer>
                 );
             })}
         </ul>
