@@ -2,6 +2,7 @@ import {Todo as TodoType} from '../../types/todo'
 import Button from '../Button';
 import Input from '../Input';
 import type {ChangeEvent} from 'react'
+import * as S from './styled';
 interface TodoProps {
     name: TodoType['name'];
     deleteTodo: () => void; // 타입을 함수로
@@ -17,12 +18,14 @@ function Todo({name, deleteTodo, handleSelected, toggleEditTodo, isEdited, setEd
         setEditedName(value)
     }
     return (
-    <li>
-        {isEdited ? <Input defaultValue={name} onChange={handleEditedName}/> : <span>{name}</span>}
-        <Button onClick={deleteTodo}>삭제</Button>
-        <Button onClick={toggleEditTodo}>{isEdited ? "취소" : "수정"}</Button>
-        {isEdited && <Button onClick={editTodo}>저장</Button>}
-    </li> 
+    <S.liContainer>
+        {isEdited ? <Input placeholder='수정내용' defaultValue={name} onChange={handleEditedName}/> : <span>{name}</span>}
+        <div>
+            <Button onClick={deleteTodo}>삭제</Button>
+            <Button onClick={toggleEditTodo}>{isEdited ? "취소" : "수정"}</Button>
+            {isEdited && <Button onClick={editTodo}>저장</Button>}
+        </div>
+    </S.liContainer> 
     )
 }
 
