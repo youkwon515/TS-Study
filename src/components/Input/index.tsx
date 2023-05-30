@@ -1,4 +1,5 @@
 import {InputHTMLAttributes} from 'react';
+import * as S from './styled'
 // type 과 interface 선언 차이
 type Color = string;
 type ColorObj = {color: Color};
@@ -42,7 +43,11 @@ interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
     color?: string; // | undefined
 }
 function Input(props:InputProps) {
-    return <input {...props}/>
+    return (
+        <S.InputBox>
+            <input {...props}/>
+        </S.InputBox>
+    )
 }
 
 export default Input;
