@@ -1,7 +1,7 @@
 # TS - Study
 
 > 프로젝트 생성 : `npx create-react-app . --template typescript` <br>
-> react styled component : `npm install styled-components@5.3.5` <br>
+> react styled component : `npm install --save styled-components`, `npm i --save-dev @types/styled-components` <br>
 > uuid : `npm install --dev @types/uuid`
 
 ## type 과 interface의 차이
